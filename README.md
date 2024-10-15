@@ -3,7 +3,11 @@
 Nhóm 5 người: 
 
 [Tên đầy đủ] - MSSV: [Số MSSV] - Đóng góp: 20%
+
 [Tên đầy đủ] - MSSV: [Số MSSV] - Đóng góp: 20%
+
 [Tên đầy đủ] - MSSV: [Số MSSV] - Đóng góp: 20%
+
 [Tên đầy đủ] - MSSV: [Số MSSV] - Đóng góp: 20%
+
 [Tên đầy đủ] - MSSV: [Số MSSV] - Đóng góp: 20%
