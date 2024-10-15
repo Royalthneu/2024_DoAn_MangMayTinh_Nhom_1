@@ -5,7 +5,6 @@ void deleteFile(const char* filePath) {
 }
 
 int main() {
-    deleteFile("/path/to/file.txt");
-    copyFile("/path/to/source.txt", "/path/to/destination.txt");
+    deleteFile("/path/to/file.txt");    
     return 0;
 }
