@@ -2,7 +2,7 @@
 Đồ án môn hệ điều hành nhóm 1 
 Nhóm 5 người: 
 
-[Tên đầy đủ] - MSSV: [Số MSSV] - Đóng góp: 20%
+[Testing Duc] - MSSV: [Số MSSV] - Đóng góp: 20%
 
 [Tên đầy đủ] - MSSV: [Số MSSV] - Đóng góp: 20%
 
