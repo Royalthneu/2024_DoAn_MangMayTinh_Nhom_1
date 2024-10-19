@@ -1,0 +1,31 @@
+# Ignore object files, executables, and other build artifacts
+*.o
+*.out
+*.exe
+*.a
+*.so
+*.dll
+main
+
+# Ignore temporary files created by the editor or system
+*.log
+*.tmp
+*.swp
+*.DS_Store
+*.vscode
+
+# Ignore CMake and other build files (if you're using a build system like CMake)
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+# Ignore debug and profile files
+*.dSYM/
+*.prof
+*.gcda
+*.gcno
+
+# Ignore any binaries created by running your program
+bin/
+build/
