@@ -39,7 +39,8 @@ int main() {
         printf("2. Start an application\n");
         printf("3. Stop an application by PID\n");
         printf("4. Delete a file\n");
-        printf("5. Exit\n");
+        printf("5. Copy a file\n");
+        printf("6. Exit\n");
         printf("Enter your choice: ");
         int choice;
         scanf("%d", &choice);
@@ -81,6 +82,18 @@ int main() {
                 printf("%s", buffer);
                 break;
             case 5:
+                printf("Enter source file path to copy: ");
+                char sourcePath[256];
+                scanf("%s", sourcePath);
+                printf("Enter destination path: ");
+                char destinationPath[256];
+                scanf("%s", destinationPath);
+                snprintf(buffer, sizeof(buffer), "COPY %s %s", sourcePath, destinationPath);
+                send(client_socket, buffer, strlen(buffer), 0);
+                read(client_socket, buffer, 1024);
+                printf("%s", buffer);
+                break;
+            case 6:
                 strcpy(command, "EXIT");
                 send(client_socket, command, strlen(command), 0);
                 close(client_socket);
