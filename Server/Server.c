@@ -11,7 +11,8 @@
 void listApplications(int client_socket);
 void startApplication(int client_socket, char* appName);
 void stopApplication(int client_socket, int pid);
-void deleteFile(int client_socket, char* filePath);
+void deleteFile(int client_socket, const char* filePath);
+void copyFile(int client_socket, const char *src, const char *dest);
 
 // Main server logic
 int main() {
@@ -70,7 +71,11 @@ int main() {
             char filePath[256];
             sscanf(buffer + 7, "%s", filePath);
             deleteFile(client_socket, filePath);
-        } else if (strncmp(buffer, "EXIT", 4) == 0) {
+        }else if (strncmp(buffer, "COPY", 4) == 0) {
+            char sourcePath[256], destinationPath[256];
+            sscanf(buffer + 5, "%255s %255s", sourcePath, destinationPath);
+            copyFile(client_socket, sourcePath, destinationPath);
+        }else if (strncmp(buffer, "EXIT", 4) == 0) {
             printf("Client disconnected.\n");
             break;
         }
@@ -108,10 +113,26 @@ void stopApplication(int client_socket, int pid) {
     send(client_socket, message, strlen(message), 0);
 }
 
-void deleteFile(int client_socket, char* filePath) {
-    char command[256];
-    snprintf(command, sizeof(command), "rm %s", filePath);
-    system(command);
-    char message[] = "File deleted successfully.\n";
-    send(client_socket, message, strlen(message), 0);
+void deleteFile(int client_socket, const char* filePath) {
+    if (remove(filePath) == -1) {
+        char error_message[] = "Error deleting file.\n";
+        send(client_socket, error_message, strlen(error_message), 0);
+    } else {
+        char message[] = "File deleted successfully.\n";
+        send(client_socket, message, strlen(message), 0);
+    }
+}
+//sc /home/root/project/testfile.txt /home/root/
+void copyFile(int client_socket, const char *src, const char *dest) {
+    char command[512];
+    snprintf(command, sizeof(command), "cp %s %s", src, dest);
+
+    int result = system(command);
+    if (result != 0) {  
+        char error_message[] = "Error copying file: Invalid path.\n";
+        send(client_socket, error_message, strlen(error_message), 0);
+    } else {
+        char message[] = "File copied successfully.\n";
+        send(client_socket, message, strlen(message), 0);
+    }
 }
